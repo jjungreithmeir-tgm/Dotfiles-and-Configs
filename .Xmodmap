@@ -1,4 +1,5 @@
-!Simply call this file with xmodmap ~/.xmodmap .xinitrc
+!Simply call this file with xmodmap ~/.Xmodmap in the .xinitrc
+!In most .xinitrc files this is already done automatically
 keycode 66 = Mode_switch Multi_key
 keycode 117 = Mode_switch Multi_key
 keycode 39 = s S ssharp
