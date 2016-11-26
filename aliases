@@ -1,0 +1,5 @@
+# Merging pdf files with no other dependency other than ghostscript
+pdfmerge() {
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=$1 "$@"
+}
+alias pdfmerge=pdfmerge
