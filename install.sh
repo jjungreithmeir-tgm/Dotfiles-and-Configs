@@ -6,3 +6,4 @@ ln -sf $REPO/.Xmodmap ~/.Xmodmap
 ln -sf $REPO/.aliases ~/.aliases
 # Only adds line if it is not to be found in the zshrc
 grep -q -F "source \$(readlink ~/.aliases)" ~/.zshrc || echo "source \$(readlink ~/.aliases)" >> ~/.zshrc
+./infinality.sh
