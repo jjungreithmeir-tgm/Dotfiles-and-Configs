@@ -12,11 +12,11 @@ Server = http://bohoomil.com/repo/multilib/\$arch
 [infinality-bundle-fonts]
 Server = http://bohoomil.com/repo/fonts" >> /etc/pacman.conf
 
-rm -rf /etc/pacman.d/gnupg
-pacman-key --init
-dirmngr </dev/null
-pacman-key --populate archlinux
-pacman-key -r 962DDE58
-pacman-key --lsign-key 962DDE58
+rm -rf /etc/pacman.d/gnupg &&
+pacman-key --init &&
+dirmngr </dev/null &&
+pacman-key --populate archlinux &&
+pacman-key -r 962DDE58 &&
+pacman-key --lsign-key 962DDE58 &&
 
 pacman -S --noconfirm infinality-bundle ibfonts-meta-base)
