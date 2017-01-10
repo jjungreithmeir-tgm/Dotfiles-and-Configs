@@ -8,7 +8,7 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 - `install.sh` ... Executes all necessary scripts and creates all symlinks in order to properly set up a machine with these files
 - `maxima_tempfiles.sh` ... Adds maxima config file so that it stops leaving files in the home directory
 - `fix_unknown_media_type.sh` ... Fixes an annoying error that stems from KDE Cachegrind and it's dependencies and always prints messages when using pacman.
-- `font\_fontrendering.sh` ... Enables smooth font rendering.
+- `font_fontrendering.sh` ... Enables smooth font rendering.
 
 ## Notes
 
