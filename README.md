@@ -9,6 +9,7 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 - `maxima_tempfiles.sh` ... Adds maxima config file so that it stops leaving files in the home directory
 - `fix_unknown_media_type.sh` ... Fixes an annoying error that stems from KDE Cachegrind and it's dependencies and always prints messages when using pacman.
 - `font_fontrendering.sh` ... Enables smooth font rendering.
+- `htmlWatchdog.sh` ... Takes a given url and downloads the html page. It then saves the page and creates a checksum which can be compared at later stages to check if the site has changed. Is primarily used in an automated Jenkins Job which checks semi-dead sites for updates.
 
 ## Notes
 
