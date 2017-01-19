@@ -1,7 +1,7 @@
 #!/bin/bash
 # Calls all scripts and sets up necessary symlinks to this repository
 REPO="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-ln -sf $REPO/.Xmodmap ~/.Xmodmap
+ln -sf $REPO/resources/.Xmodmap ~/.Xmodmap
 ./maxima_tempfiles.sh
 ln -sf $REPO/resources/.aliases ~/.aliases
 # Only adds line if it is not to be found in the zshrc
