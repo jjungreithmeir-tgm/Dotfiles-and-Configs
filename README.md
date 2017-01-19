@@ -12,6 +12,14 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 
 ## Notes
 
+### GPG
+
+#### export private key
+`gpg -ao <file name> --export-secret-key "email address"
+
+#### import private key
+`gpg --import <file name>
+
 ### Symlinks
  
 Always use absolute paths!
