@@ -13,6 +13,10 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 
 ## Notes
 
+### General
+
+- After adding a user to a new group simply execute `newgrp <group name>` to update the entry.
+
 ### GPG
 
 #### export private key
@@ -26,3 +30,7 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 Always use absolute paths!
 
 `ln -s <source> <target>`
+
+### CUPS
+
+Add your user to the `lp` and the `sys` group otherwise you will encounter an authentication problem when accessing the web interface via `localhost:631` or `127.0.0.1:631`.
