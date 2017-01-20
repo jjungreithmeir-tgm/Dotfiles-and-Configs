@@ -34,3 +34,9 @@ Always use absolute paths!
 ### CUPS
 
 Add your user to the `lp` and the `sys` group otherwise you will encounter an authentication problem when accessing the web interface via `localhost:631` or `127.0.0.1:631`.
+
+## Contributions
+
+### AUR packages
+
+- [texlive-tikz-uml](https://aur.archlinux.org/packages/texlive-tikz-uml/)
