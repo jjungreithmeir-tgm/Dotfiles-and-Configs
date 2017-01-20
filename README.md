@@ -40,3 +40,4 @@ Add your user to the `lp` and the `sys` group otherwise you will encounter an au
 ### AUR packages
 
 - [texlive-tikz-uml](https://aur.archlinux.org/packages/texlive-tikz-uml/)
+- [texlive-coffee-stains](https://aur.archlinux.org/packages/texlive-coffee-stains/)
