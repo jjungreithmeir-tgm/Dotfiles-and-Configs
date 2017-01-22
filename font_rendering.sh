@@ -5,4 +5,4 @@ if [ $EUID != 0 ]; then
 fi
 pacman -S --asdeps --noconfirm freetype2 cairo fontconfig
 cp resources/local.conf /etc/fonts/.
-grep -q -F "export FREETYPE_PROPERTIES=\"truetype:interpreter-version=38\"" /etc/profile.d/freetype.sh || echo "export FREETYPE_PROPERTIES=\"truetype:interpreter-version=38\"" >> /etc/profile.d/freetype.sh
+grep -q -F "export FREETYPE_PROPERTIES=\"truetype:interpreter-version=38\"" /etc/profile.d/freetype2.sh || echo "export FREETYPE_PROPERTIES=\"truetype:interpreter-version=38\"" >> /etc/profile.d/freetype2.sh
