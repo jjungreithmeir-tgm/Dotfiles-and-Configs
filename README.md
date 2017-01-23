@@ -26,7 +26,7 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 `gpg --import <file name>`
 
 ### Symlinks
- 
+
 Always use absolute paths!
 
 `ln -s <source> <target>`
@@ -36,6 +36,18 @@ Always use absolute paths!
 Add your user to the `lp` and the `sys` group otherwise you will encounter an authentication problem when accessing the web interface via `localhost:631` or `127.0.0.1:631`.
 
 If your printers are not showing up in some applications (e.g. evince, firefox) then simply install `gtk3-print-backends`.
+
+### Teamspeak 3
+
+Essential files which should be included in a backup:
+
+- `ts3server.sqlitedb` - contains channels, settings, user, permissions
+- `ts3server.ini`
+- `query_ip_whitelist.txt`
+- `query_ip_blacklist.txt`
+- `files/internal` - all the icon logos, etc.
+
+Teamspeak also offers the possibility to [format text with BB codes](http://forum.teamspeak.com/misc.php?do=bbcode).
 
 ## Contributions
 
