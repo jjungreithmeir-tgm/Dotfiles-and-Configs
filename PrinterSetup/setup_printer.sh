@@ -18,7 +18,7 @@
 
 user="$(whoami)"
 samba_auth_file="/etc/samba/printing.auth"
-
+samba_conf="/etc/samba/smb.conf"
 # Gaining superuser rights
 if [ $EUID != 0 ]; then
     sudo "$0" "$@"
@@ -34,8 +34,10 @@ fi
 
 # Properly configuring samba
 # https://bugs.archlinux.org/task/3743
-# TODO check if file already exists
-touch /etc/samba/smb.conf
+if [ ! -f $samba_conf ]; then
+    echo "Creating empty samba config file."
+    touch /etc/samba/smb.conf
+fi
 
 # Ask for credentials
 read -p "Please enter your TGM username: " tgm_username
@@ -62,3 +64,5 @@ cp RicohMPC3004_FollowYou.ppd /etc/cups/ppd
 chown $user /usr/lib/cups/backend/smbc
 cat printers.conf >> /etc/cups/printers.conf
 systemctl start org.cups.cupsd.service
+
+echo "Setup successful!"
