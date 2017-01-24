@@ -17,8 +17,9 @@
 # Copyright (C) 2016 by Jakob Jungreithmeir and Thomas Fellner.
 
 user="$(whoami)"
-samba_auth_file="/etc/samba/printing/auth"
+samba_auth_file="/etc/samba/printing.auth"
 
+# Gaining superuser rights
 if [ $EUID != 0 ]; then
     sudo "$0" "$@"
     exit $?
@@ -33,30 +34,31 @@ fi
 
 # Properly configuring samba
 # https://bugs.archlinux.org/task/3743
+# TODO check if file already exists
 touch /etc/samba/smb.conf
-echo "Please enter your TGM username: "
-read tgm_username
-echo "Please enter your password: "
-read -s tgm_password
-echo "Confirm your password: "
-read -s tgm_password_2
 
-until [ tgm_password == tgm_password_2 ]; do
+# Ask for credentials
+read -p "Please enter your TGM username: " tgm_username
+read -s -p "Please enter your password: " tgm_password
+read -s -p "Confirm your password: " tgm_password_2
+
+# Confirm whether the same password was entered twice
+until [ $tgm_password == $tgm_password_2 ]; do
     echo "Did you enter the password correctly?"
-    echo "Please enter your password again: "
-    read -s tgm_password
-    echo "Confirm your password: "
-    read -s tgm_password_2
+    read -s -p "Please enter your password again: " tgm_password
+    read -s -p "Confirm your password: " tgm_password_2
 done
 
+# Save credentials to auth file and set correct permissions to restrict access
 echo "username = ${tgm_username}" > ${samba_auth_file}
 echo "password = ${tgm_password}" >> ${samba_auth_file}
 echo "domain = TGM" >> ${samba_auth_file}
+chmod 600 ${samba_auth_file}
 
 # Configure CUPS
 systemctl stop org.cups.cupsd.service
 cp smbc /usr/lib/cups/backend/
 cp RicohMPC3004_FollowYou.ppd /etc/cups/ppd
 chown $user /usr/lib/cups/backend/smbc
-sudo cat printers.conf >> /etc/cups/printers.conf
+cat printers.conf >> /etc/cups/printers.conf
 systemctl start org.cups.cupsd.service
