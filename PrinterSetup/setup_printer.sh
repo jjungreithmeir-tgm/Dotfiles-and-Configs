@@ -14,7 +14,7 @@
 # hard when a printing job was _really_ unsuccessful.
 #
 # This script was developed and tested on Arch Linux.
-# Copyright (C) 2016 by Jakob Jungreithmeir and Thomas Fellner.
+# Copyright (C) 2017 by Jakob Jungreithmeir and Thomas Fellner.
 
 user="$(whoami)"
 samba_auth_file="/etc/samba/printing.auth"
