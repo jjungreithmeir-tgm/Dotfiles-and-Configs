@@ -11,7 +11,7 @@ account="$2"
 title="$3"
 numcopies="$4"
 options="$5"
-filename="$6"
+filename="$6" # This is never the filename.
 
 if [ "$filename" = "" ]; then
 	filename=-

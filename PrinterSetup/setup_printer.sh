@@ -7,11 +7,15 @@
 # cups, samba (smbclient), gtk3-print-backends (optional)
 #
 # Known issues:
-# Currently every print job is recognized as a failure by CUPS. This leads
+# - Currently every print job is recognized as a failure by CUPS. This leads
 # to the default action of pausing the printer. By changing the default action
 # to 'abort job' it is possible to avoid the pausing after every job.
 # Unfortunately this more or less cancels every job which makes debugging quite
 # hard when a printing job was _really_ unsuccessful.
+#
+# - All the documents _lose_ their name by printing them. On the printer all
+# of them shop up under the same generic name. This happens because the file is
+# piped into the smbclient (somehow) and it has to be renamed to address it.
 #
 # This script was developed and tested on Arch Linux.
 # Copyright (C) 2017 by Jakob Jungreithmeir and Thomas Fellner.
