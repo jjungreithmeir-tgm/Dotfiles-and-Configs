@@ -18,6 +18,7 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 - After adding a user to a new group simply execute `newgrp <group name>` to update the entry.
 - Don't forget to enable the following options in your `/etc/pacman.conf`: `Color`, `ILoveCandy`, `VerbosePkgLists`
 - Add `Defaults insults` to the `/etc/sudoers` file for a more interesting administration experience! Use `visudo` to edit this file safely.
+- To pick mirrors near to your geographical position use the `reflector` package: `sudo reflector --sort rate --save /etc/pacman.d/mirrorlist -c "country name" -f 5 -l 5`
 
 ### GPG
 
