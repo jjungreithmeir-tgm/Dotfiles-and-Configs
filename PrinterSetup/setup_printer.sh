@@ -52,7 +52,6 @@ fi
 
 # Ask for credentials
 read -p "Please enter your TGM username: " tgm_username
-echo
 read -s -p "Please enter your password: " tgm_password
 echo
 read -s -p "Confirm your password: " tgm_password_2
@@ -61,7 +60,6 @@ echo
 # Confirm whether the same password was entered twice
 until [ $tgm_password == $tgm_password_2 ]; do
     echo "Did you enter the password correctly?"
-    echo
     read -s -p "Please enter your password again: " tgm_password
     echo
     read -s -p "Confirm your password: " tgm_password_2
