@@ -4,7 +4,7 @@
 # (http://willem.engen.nl/projects/cupssmb/)
 #
 # Dependencies:
-# cups, samba (smbclient), gtk3-print-backends (optional)
+# cups, samba (smbclient), readline, gtk3-print-backends (optional)
 #
 # Known issues:
 # - Currently every print job is recognized as a failure by CUPS. This leads
@@ -23,43 +23,56 @@
 user="$(whoami)"
 samba_auth_file="/etc/samba/printing.auth"
 samba_conf="/etc/samba/smb.conf"
+
+# Checking if dependencies are met
+if ldconfig -p | grep --quiet samba; then
+    echo "Samba is currently not installed."
+    echo "Aborting setup."
+    exit 1
+fi;
+if ldconfig -p | grep --quiet cups; then
+    echo "Cups is currently not installed."
+    echo "Aborting setup."
+    exit 1
+fi;
+
 # Gaining superuser rights
 if [ $EUID != 0 ]; then
     sudo "$0" "$@"
     exit $?
 fi
 
-# Installing printer driver
-#cd /tmp
-#git clone https://aur.archlinux.org/openprinting-ppds-postscript-ricoh.git
-#cd openprinting-ppds-postscript-ricoh
-#makepkg
-#pacman -U --no- openprinting-ppds-postscript-ricoh-20161206-1-any.pkg.tar.xz
-
 # Properly configuring samba
 # https://bugs.archlinux.org/task/3743
 if [ ! -f $samba_conf ]; then
     echo "Creating empty samba config file."
-    touch /etc/samba/smb.conf
+    touch $samba_conf
+    chmod 644 $samba_conf
 fi
 
 # Ask for credentials
 read -p "Please enter your TGM username: " tgm_username
+echo
 read -s -p "Please enter your password: " tgm_password
+echo
 read -s -p "Confirm your password: " tgm_password_2
+echo
 
 # Confirm whether the same password was entered twice
 until [ $tgm_password == $tgm_password_2 ]; do
     echo "Did you enter the password correctly?"
+    echo
     read -s -p "Please enter your password again: " tgm_password
+    echo
     read -s -p "Confirm your password: " tgm_password_2
+    echo
 done
 
 # Save credentials to auth file and set correct permissions to restrict access
 echo "username = ${tgm_username}" > ${samba_auth_file}
 echo "password = ${tgm_password}" >> ${samba_auth_file}
 echo "domain = TGM" >> ${samba_auth_file}
-chmod 600 ${samba_auth_file}
+chmod 644 ${samba_auth_file}
 
 # Configure CUPS
 systemctl stop org.cups.cupsd.service
