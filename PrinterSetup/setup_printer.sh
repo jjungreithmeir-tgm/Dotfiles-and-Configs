@@ -25,12 +25,12 @@ samba_auth_file="/etc/samba/printing.auth"
 samba_conf="/etc/samba/smb.conf"
 
 # Checking if dependencies are met
-if ldconfig -p | grep --quiet samba; then
+if ! ldconfig -p | grep --quiet samba; then
     echo "Samba is currently not installed."
     echo "Aborting setup."
     exit 1
 fi;
-if ldconfig -p | grep --quiet cups; then
+if ! ldconfig -p | grep --quiet cups; then
     echo "Cups is currently not installed."
     echo "Aborting setup."
     exit 1
