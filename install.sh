@@ -7,3 +7,4 @@ ln -sf $REPO/resources/.aliases ~/.aliases
 # Only adds line if it is not to be found in the zshrc
 grep -q -F "source \$(readlink ~/.aliases)" ~/.zshrc || echo "source \$(readlink ~/.aliases)" >> ~/.zshrc
 # Disabled as infinality is no longer maintained ./infinality.sh
+ln -sf $REPO/resources/.vimrc ~/.vimrc
