@@ -51,6 +51,10 @@ Essential files which should be included in a backup:
 
 Teamspeak also offers the possibility to [format text with BB codes](http://forum.teamspeak.com/misc.php?do=bbcode).
 
+### Steam
+
+If all source games fail to properly update and/or download with the error message `corrupt update files` and the steam folder lies on an NTFS formatted drive then you need to change the mounting options in `/etc/fstab` to `defaults,exec,uid=1000,gid=1000`.
+
 ## Contributions
 
 ### AUR packages
