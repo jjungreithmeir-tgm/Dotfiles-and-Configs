@@ -27,7 +27,8 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 - Append the following two lines to the `Device` section of the `/etc/X11/xorg.conf` file.
 ```
 Option         "RegistryDwords" "PerfLevelSrc=0x3322; PowerMizerDefaultAC=0x1"
-Option         "TripleBuffer" "True"```
+Option         "TripleBuffer" "True"
+```
 - Remove any mentions of `RegistryDwords` or `TripleBuffer` from the `Screen` section in case there are any.
 - Append the following line to the `Screen` section.
 ```
