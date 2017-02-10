@@ -34,9 +34,9 @@ Option         "TripleBuffer" "True"
 ```
 Option "metamodes" "nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 ```
-- Add this option to `/etc/profile.d/profile.sh`.
+- Add this option to `/etc/profile.d/profile.sh` (the tutorial has a typo in this instruction!).
 ```
-export __GL_THREADED_OPTIMISATIONS=1
+export __GL_THREADED_OPTIMIZATIONS=1
 ```
 - In the `nvidia-settings` in the OpenGL section enable `Sync to VBlank` and `Allow Flipping`. In the `XServer XVideo Settings` use the mode `Auto`.
 - Install the package `compton` and create config with the [following content](https://github.com/jjungreithmeir-tgm/Dotfiles-and-Configs/blob/master/resources/compton.conf) in `~/.config/compton.conf`
