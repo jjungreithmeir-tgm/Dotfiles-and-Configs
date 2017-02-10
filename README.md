@@ -19,6 +19,30 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 - Don't forget to enable the following options in your `/etc/pacman.conf`: `Color`, `ILoveCandy`, `VerbosePkgLists`
 - Add `Defaults insults` to the `/etc/sudoers` file for a more interesting administration experience! Use `visudo` to edit this file safely.
 
+### Nvidia/Xorg/Tearing
+
+[This tutorial](https://www.gloriouseggroll.tv/2016-arch-linux-nvidia-get-rid-of-screen-tearing-and-stuttering/) shows how to get rid of tearing under Arch when using the proprietary Nvidia driver. Here is a quick summary of the process:
+
+- Generate an `xorg.conf` file with the `nvidia-xconfig` command.
+- Append the following two lines to the `Device` section of the `/etc/X11/xorg.conf` file.
+```
+Option         "RegistryDwords" "PerfLevelSrc=0x3322; PowerMizerDefaultAC=0x1"
+Option         "TripleBuffer" "True"```
+- Remove any mentions of `RegistryDwords` or `TripleBuffer` from the `Screen` section in case there are any.
+- Append the following line to the `Screen` section.
+```
+Option "metamodes" "nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
+```
+- Add this option to `/etc/profile.d/profile.sh`.
+```
+export __GL_THREADED_OPTIMISATIONS=1
+```
+- In the `nvidia-settings` in the OpenGL section enable `Sync to VBlank` and `Allow Flipping`. In the `XServer XVideo Settings` use the mode `Auto`.
+- Install the package `compton` and create config with the [following content](https://github.com/jjungreithmeir-tgm/Dotfiles-and-Configs/blob/master/resources/compton.conf) in `~/.config/compton.conf`
+- Add compton to the auto-startup manager of your choice (XFCE4-autostart in my case) via
+```
+compton --config ~/.config/compton.conf -b
+```
 ### GPG
 
 #### export private key
