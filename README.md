@@ -19,6 +19,7 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 - Don't forget to enable the following options in your `/etc/pacman.conf`: `Color`, `ILoveCandy`, `VerbosePkgLists`
 - Add `Defaults insults` to the `/etc/sudoers` file for a more interesting administration experience! Use `visudo` to edit this file safely.
 - To pick mirrors near to your geographical position use the `reflector` package: `sudo reflector --sort rate --save /etc/pacman.d/mirrorlist -c "country name" -f 5 -l 5`
+- To list all available fonts in LaTeX execute the following command: `fc-list :outline -f "%{family}\n"`
 
 ### GPG
 
