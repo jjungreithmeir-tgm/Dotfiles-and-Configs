@@ -86,3 +86,4 @@ If all source games fail to properly update and/or download with the error messa
 
 - [texlive-tikz-uml](https://aur.archlinux.org/packages/texlive-tikz-uml/)
 - [texlive-coffee-stains](https://aur.archlinux.org/packages/texlive-coffee-stains/)
+- [ttf-impallari-dosis](https://aur.archlinux.org/packages/ttf-impallari-dosis/)
