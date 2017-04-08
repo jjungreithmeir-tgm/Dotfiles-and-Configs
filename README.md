@@ -44,6 +44,13 @@ export __GL_THREADED_OPTIMIZATIONS=1
 ```
 compton --config ~/.config/compton.conf -b
 ```
+
+If you have multiple monitors then you also need to execute the following line in order for the `ForceFullComposition` to be applied on both devices:
+
+```
+nvidia-settings --assign CurrentMetaMode="$(xrandr | sed -nr '/(\S+) connected (primary )?[0-9]+x[0-9]+(\+\S+).*/{ s//\1: nvidia-auto-select \3 { ForceFullCompositionPipeline = On }, /; H }; ${ g; s/\n//g; s/, $//; p }')"
+```
+
 ### GPG
 
 #### export private key
