@@ -87,6 +87,12 @@ Teamspeak also offers the possibility to [format text with BB codes](http://foru
 
 If all source games fail to properly update and/or download with the error message `corrupt update files` and the steam folder lies on an NTFS formatted drive then you need to change the mounting options in `/etc/fstab` to `defaults,exec,uid=1000,gid=1000`.
 
+## Useful links
+
+### Latex
+
+- [Bibtex entries for RFC specifications](http://notesofaprogrammer.blogspot.co.at/2014/11/bibtex-entries-for-ietf-rfcs-and.html)
+
 ## Contributions
 
 ### AUR packages
