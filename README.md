@@ -93,7 +93,7 @@ If all source games fail to properly update and/or download with the error messa
 
 To install shaderpacks with the Feed the Beast Launcher, simply download the Shader Core Mod and place it in the appropriate `.../minecraft/mods/` folder. Then startup the game, it automatically creates a `shaderpacks` folder in the `minecraft` folder. There you have to put your shaderpacks, this can be even done at runtime.
 
-If you get an error saying something like `invalid program: composite1` then you need to manually modify the shader code as it seems to contain an error. Just edit the contents of the zip archive with the editor of your choice. Find the following line in the `shaders/composite1.fsh` file, in my case it was line 959.
+If you get an error saying `[Shaders] Error : Invalid program composite1` then you need to manually modify the shader code as it seems to contain an error. Just edit the contents of the zip archive with the editor of your choice. Find the following line in the `shaders/composite1.fsh` file, in my case it was line 959.
 
 ```
 vec4 	ComputeFakeSkyReflection(in SurfaceStruct surface) {
