@@ -83,9 +83,23 @@ Essential files which should be included in a backup:
 
 Teamspeak also offers the possibility to [format text with BB codes](http://forum.teamspeak.com/misc.php?do=bbcode).
 
-### Steam
+### Gaming
+
+#### Steam
 
 If all source games fail to properly update and/or download with the error message `corrupt update files` and the steam folder lies on an NTFS formatted drive then you need to change the mounting options in `/etc/fstab` to `defaults,exec,uid=1000,gid=1000`.
+
+#### Minecraft
+
+To install shaderpacks with the Feed the Beast Launcher, simply download the Shader Core Mod and place it in the appropriate `.../minecraft/mods/` folder. Then startup the game, it automatically creates a `shaderpacks` folder in the `minecraft` folder. There you have to put your shaderpacks, this can be even done at runtime.
+
+If you get an error saying something like `invalid program: composite1` then you need to manually modify the shader code as it seems to contain an error. Just edit the contents of the zip archive with the editor of your choice. Find the following line in the `shaders/composite1.fsh` file, in my case it was line 959.
+
+```
+vec4 	ComputeFakeSkyReflection(in SurfaceStruct surface) {
+```
+
+There you need to change the type of the parameter from `in` to `inout`.
 
 ## Useful links
 
