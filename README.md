@@ -101,6 +101,10 @@ vec4 	ComputeFakeSkyReflection(in SurfaceStruct surface) {
 
 There you need to change the type of the parameter from `in` to `inout`.
 
+#### Feral Interactive Ports
+
+- https://forum.manjaro.org/t/problems-fixes-for-steam-apps-and-new-openssl-currently-in-testing-only/23214/3
+
 ## Useful links
 
 ### Latex
