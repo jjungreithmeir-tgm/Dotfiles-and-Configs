@@ -89,6 +89,14 @@ Teamspeak also offers the possibility to [format text with BB codes](http://foru
 
 If all source games fail to properly update and/or download with the error message `corrupt update files` and the steam folder lies on an NTFS formatted drive then you need to change the mounting options in `/etc/fstab` to `defaults,exec,uid=1000,gid=1000`.
 
+To check if any libraries for steam are missing simply execute:
+
+```
+cd ~/.local/share/Steam/ubuntu12_32
+
+LD_LIBRARY_PATH=".:${LD_LIBRARY_PATH}" ldd $(file *|sed '/ELF/!d;s/:.*//g')|grep 'not found'|sort|uniq
+```
+
 #### Minecraft
 
 To install shaderpacks with the Feed the Beast Launcher, simply download the Shader Core Mod and place it in the appropriate `.../minecraft/mods/` folder. Then startup the game, it automatically creates a `shaderpacks` folder in the `minecraft` folder. There you have to put your shaderpacks, this can be even done at runtime.
