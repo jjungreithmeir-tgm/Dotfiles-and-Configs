@@ -53,6 +53,13 @@ Essential files which should be included in a backup:
 
 Teamspeak also offers the possibility to [format text with BB codes](http://forum.teamspeak.com/misc.php?do=bbcode).
 
+### Ubiquiti
+
+To correctly enable zero-handoff with multiple access points (also called fast roaming in Ubiquities interface) you have to enable the following options:
+
+- Settings -> Wireless Networks -> <SSID> -> Check `enable fast roaming`
+- Additionally, you can enable meshing on every access point: Select the appropriate access point -> Config -> Wireless Uplinks -> Check `allow meshing to another access point`
+
 ## Contributions
 
 ### AUR packages
