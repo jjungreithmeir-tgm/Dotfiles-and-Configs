@@ -21,6 +21,38 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 - To pick mirrors near to your geographical position use the `reflector` package: `sudo reflector --sort rate --save /etc/pacman.d/mirrorlist -c "country name" -f 5 -l 5`
 - To list all available fonts in LaTeX execute the following command: `fc-list :outline -f "%{family}\n"`
 
+### Nvidia/Xorg/Tearing
+
+[This tutorial](https://www.gloriouseggroll.tv/2016-arch-linux-nvidia-get-rid-of-screen-tearing-and-stuttering/) shows how to get rid of tearing under Arch when using the proprietary Nvidia driver. Here is a quick summary of the process:
+
+- Generate an `xorg.conf` file with the `nvidia-xconfig` command.
+- Append the following two lines to the `Device` section of the `/etc/X11/xorg.conf` file.
+```
+Option         "RegistryDwords" "PerfLevelSrc=0x3322; PowerMizerDefaultAC=0x1"
+Option         "TripleBuffer" "True"
+```
+- Remove any mentions of `RegistryDwords` or `TripleBuffer` from the `Screen` section in case there are any.
+- Append the following line to the `Screen` section.
+```
+Option "metamodes" "nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
+```
+- Add this option to `/etc/profile.d/profile.sh` (the tutorial has a typo in this instruction!).
+```
+export __GL_THREADED_OPTIMIZATIONS=1
+```
+- In the `nvidia-settings` in the OpenGL section enable `Sync to VBlank` and `Allow Flipping`. In the `XServer XVideo Settings` use the mode `Auto`.
+- Install the package `compton` and create config with the [following content](https://github.com/jjungreithmeir-tgm/Dotfiles-and-Configs/blob/master/resources/compton.conf) in `~/.config/compton.conf`
+- Add compton to the auto-startup manager of your choice (XFCE4-autostart in my case) via
+```
+compton --config ~/.config/compton.conf -b
+```
+
+If you have multiple monitors then you also need to execute the following line in order for the `ForceFullComposition` to be applied on both devices:
+
+```
+nvidia-settings --assign CurrentMetaMode="$(xrandr | sed -nr '/(\S+) connected (primary )?[0-9]+x[0-9]+(\+\S+).*/{ s//\1: nvidia-auto-select \3 { ForceFullCompositionPipeline = On }, /; H }; ${ g; s/\n//g; s/, $//; p }')"
+```
+
 ### GPG
 
 #### export private key
@@ -60,9 +92,46 @@ To correctly enable zero-handoff with multiple access points (also called fast r
 - Settings -> Wireless Networks -> <SSID> -> Check `enable fast roaming`
 - Additionally, you can enable meshing on every access point: Select the appropriate access point -> Config -> Wireless Uplinks -> Check `allow meshing to another access point`
 
+### Gaming
+
+#### Steam
+
+If all source games fail to properly update and/or download with the error message `corrupt update files` and the steam folder lies on an NTFS formatted drive then you need to change the mounting options in `/etc/fstab` to `defaults,exec,uid=1000,gid=1000`.
+
+To check if any libraries for steam are missing simply execute:
+
+```
+cd ~/.local/share/Steam/ubuntu12_32
+
+LD_LIBRARY_PATH=".:${LD_LIBRARY_PATH}" ldd $(file *|sed '/ELF/!d;s/:.*//g')|grep 'not found'|sort|uniq
+```
+
+#### Minecraft
+
+To install shaderpacks with the Feed the Beast Launcher, simply download the Shader Core Mod and place it in the appropriate `.../minecraft/mods/` folder. Then startup the game, it automatically creates a `shaderpacks` folder in the `minecraft` folder. There you have to put your shaderpacks, this can be even done at runtime.
+
+If you get an error saying `[Shaders] Error : Invalid program composite1` then you need to manually modify the shader code as it seems to contain an error. Just edit the contents of the zip archive with the editor of your choice. Find the following line in the `shaders/composite1.fsh` file, in my case it was line 959.
+
+```
+vec4 	ComputeFakeSkyReflection(in SurfaceStruct surface) {
+```
+
+There you need to change the type of the parameter from `in` to `inout`.
+
+#### Feral Interactive Ports
+
+- https://forum.manjaro.org/t/problems-fixes-for-steam-apps-and-new-openssl-currently-in-testing-only/23214/3
+
+## Useful links
+
+### Latex
+
+- [Bibtex entries for RFC specifications](http://notesofaprogrammer.blogspot.co.at/2014/11/bibtex-entries-for-ietf-rfcs-and.html)
+
 ## Contributions
 
 ### AUR packages
 
 - [texlive-tikz-uml](https://aur.archlinux.org/packages/texlive-tikz-uml/)
 - [texlive-coffee-stains](https://aur.archlinux.org/packages/texlive-coffee-stains/)
+- [ttf-impallari-dosis](https://aur.archlinux.org/packages/ttf-impallari-dosis/)
