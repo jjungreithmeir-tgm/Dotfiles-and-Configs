@@ -122,6 +122,34 @@ There you need to change the type of the parameter from `in` to `inout`.
 
 - https://forum.manjaro.org/t/problems-fixes-for-steam-apps-and-new-openssl-currently-in-testing-only/23214/3
 
+### Raspberry Pi (Arch Linux ARM) - First steps after installation
+
+- Basic [source](https://archlinuxarm.org/platforms/armv6/raspberry-pi)
+- Create boot partition on SD card (type primary, partition type W95 FAT32 (LBA)) with a size of `+100M`
+- Create second partition filling up the remaining card
+- Create FAT filesystem with `mkfs.vfat /dev/sdX1` and mount to a new folder (eg: `boot`)
+- Create ext4 filesystem with `mkfs.ext4 /dev/sdx2` and mount to a new folder (eg: `root`)
+- Get the root filesystem with `wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-latest.tar.gz`
+- Extract it with `bsdtar -xpf ArchLinuxARM-rpi-latest.tar.gz -C root`
+- Execute `sync` for some cache/memory flushing magic and to have some time to get a coffee
+- Move the boot files from your temporary root to the new boot partition (eg: `mv root/boot/* boot`
+- Unmount the partions
+- Put the SD card back into the pi and connect it to your network device of choice
+- ssh into the little devil and initialize the keyring with `pacman-key --init` and populate the package signing keys with `pacman-key --populate archlinuxarm`
+- Install `base-devel`
+- Create new user
+- Add new user to wheel group
+- Add wheel group to sudoers in `/etc/sudoers`
+- Delete default alarm user
+- Disable root user by deleting the password in `/etc/shadow` with `!`
+- Copy your local (just for this use case generated) ssh public key to the pi with `ssh-copy-id username@remote-server.org`
+- Set `PasswordAuthentication no` in `/etc/ssh/sshd_config` to disallow password-based ssh login attempts
+- Restart the `sshd.service` to make those changes permanent
+- Install & configure `fail2ban` (see the Arch Wiki for more information)
+- Get `yay` tarball (or similiar aur manager) and install package with `makepkg -si`
+- Additional possibilities: `iptables`
+
+
 ## Useful links
 
 ### Latex
