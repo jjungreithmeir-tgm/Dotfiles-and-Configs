@@ -20,6 +20,7 @@ Various dotfiles and other documentation for my Arch Linux Installation(s)
 - Add `Defaults insults` to the `/etc/sudoers` file for a more interesting administration experience! Use `visudo` to edit this file safely.
 - To pick mirrors near to your geographical position use the `reflector` package: `sudo reflector --sort rate --save /etc/pacman.d/mirrorlist -c "country name" -f 5 -l 5`
 - To list all available fonts in LaTeX execute the following command: `fc-list :outline -f "%{family}\n"`
+- If you are having encoding problems with your ssh session - namely every backspace being interpreted as a space - `export TERM=ansi` temporarely fixes this problem.
 
 ### Nvidia/Xorg/Tearing
 
